@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-
 const Form = JSONSchemaForm.default;
 const schema = {
   "type":"object",
