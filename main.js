@@ -40,7 +40,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
                 video1.srcObject = stream;
             });
             navigator.mediaDevices.getUserMedia({ 
-                video: { deviceId: { exact: deviceIds[1] } } 
+                video: { deviceId: { exact: deviceIds[2] } } 
             })
             .then(function (stream) {
                 video2.srcObject = stream;
