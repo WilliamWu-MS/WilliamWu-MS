@@ -38,12 +38,14 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
             })
             .then(function (stream) {
                 video1.srcObject = stream;
+                video1.setVideoSize(640, 480);
             });
             navigator.mediaDevices.getUserMedia({ 
                 video: { deviceId: { exact: deviceIds[1] } } 
             })
             .then(function (stream) {
                 video2.srcObject = stream;
+                video2.setVideoSize(640, 480);
             });
         }
     }));
