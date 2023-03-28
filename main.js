@@ -29,7 +29,7 @@ const constraints = {
 };
 
 navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enumerateDevices().then(function (devices) {
-        let deviceIds = devices.filter(device => device.kind === "videoinput" && device.label.excludes('NewTek NDI Video'));
+        let deviceIds = devices.filter(device => device.kind === "videoinput" && !device.label.includes('NewTek NDI Video'));
         deviceIds = deviceIds.map(device => device.deviceId);
 
         if (deviceIds.length >= 2) {
