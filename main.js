@@ -28,10 +28,7 @@ const constraints = {
     video: {undefined}
 };
 
-navigator.mediaDevices.getUserMedia(constraints);
-
-navigator.mediaDevices.enumerateDevices()
-    .then(function (devices) {
+navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enumerateDevices().then(function (devices) {
         let deviceIds = devices.filter(device => device.kind === "videoinput");
         deviceIds = deviceIds.map(device => device.deviceId);
 
@@ -49,4 +46,4 @@ navigator.mediaDevices.enumerateDevices()
                 video2.srcObject = stream;
             });
         }
-    });
+    }));
