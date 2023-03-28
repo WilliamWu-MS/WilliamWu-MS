@@ -29,7 +29,7 @@ const constraints = {
 };
 
 navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enumerateDevices().then(function (devices) {
-        let deviceIds = devices.filter(device => device.kind === "videoinput");
+        let deviceIds = devices.filter(device => device.kind === "videoinput" && device.label.excludes('NewTek NDI Video'));
         deviceIds = deviceIds.map(device => device.deviceId);
 
         if (deviceIds.length >= 2) {
@@ -40,7 +40,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
                 video1.srcObject = stream;
             });
             navigator.mediaDevices.getUserMedia({ 
-                video: { deviceId: { exact: deviceIds[2] } } 
+                video: { deviceId: { exact: deviceIds[1] } } 
             })
             .then(function (stream) {
                 video2.srcObject = stream;
