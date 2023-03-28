@@ -24,13 +24,6 @@ const video1 = document.getElementById('video1');
 const video2 = document.getElementById('video2');
 let devices = [];
 
-const constraints = {
-    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-  };
-
-navigator.mediaDevices.getUserMedia(constraints);
-
 navigator.mediaDevices.enumerateDevices()
     .then(function (devices) {
         let deviceIds = devices.filter(device => device.kind === "videoinput");
