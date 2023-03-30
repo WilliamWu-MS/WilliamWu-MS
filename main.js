@@ -19,7 +19,14 @@ function gotDevices(mediaDevices) {
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices);
  */
- 
+function onResults(results) {
+  
+  if (results.detections.length > 0) {
+    console("detect face");
+  }
+
+}
+
 const video1 = document.getElementById('video1');
 const video2 = document.getElementById('video2');
 let devices = [];
@@ -38,25 +45,17 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
             })
             .then(function (stream) {
                 video1.srcObject = stream;
-                video1.setVideoSize(640, 480);
             });
             navigator.mediaDevices.getUserMedia({ 
                 video: { deviceId: { exact: deviceIds[1] } } 
             })
             .then(function (stream) {
                 video2.srcObject = stream;
-                video2.setVideoSize(640, 480);
             });
         }
     }));
 
-function onResults(results) {
-  
-  if (results.detections.length > 0) {
-    console("detect face");
-  }
 
-}
 
 const faceDetection = new FaceDetection({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
@@ -73,6 +72,6 @@ const camera = new Camera(video1, {
     await faceDetection.send({image: video1});
   },
   width: 640,
-  height: 360
+  height: 480
 });
 camera.start();
