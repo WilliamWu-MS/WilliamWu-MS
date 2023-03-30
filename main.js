@@ -49,3 +49,30 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
             });
         }
     }));
+
+function onResults(results) {
+  
+  if (results.detections.length > 0) {
+    console("detect face");
+  }
+
+}
+
+const faceDetection = new FaceDetection({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
+}});
+faceDetection.setOptions({
+  model: 'short',
+  minDetectionConfidence: 0.5
+});
+faceDetection.onResults(onResults);
+
+
+const camera = new Camera(video1, {
+  onFrame: async () => {
+    await faceDetection.send({image: video1});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start();
