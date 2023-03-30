@@ -36,14 +36,6 @@ const constraints = {
 };
 
 
-const faceDetection = new FaceDetection({locateFile: (file) => {
-  return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
-}});
-faceDetection.setOptions({
-  model: 'short',
-  minDetectionConfidence: 0.5
-});
-faceDetection.onResults(onResults);
 
 navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enumerateDevices().then(function (devices) {
         let deviceIds = devices.filter(device => device.kind === "videoinput" && !device.label.includes('NewTek NDI Video'));
@@ -61,15 +53,25 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
             })
             .then(function (stream) {
                 video2.srcObject = stream;
+            })
+            .then(function (video1){
+              const faceDetection = new FaceDetection({locateFile: (file) => {
+              return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
+            }});
+            faceDetection.setOptions({
+              model: 'short',
+              minDetectionConfidence: 0.5
             });
+            faceDetection.onResults(onResults);
+            const camera = new Camera(video1, {
+              onFrame: async () => {
+                await faceDetection.send({image: video1});
+              },
+              width: 640,
+              height: 480
+            });
+            camera.start();
+            );
         }
     }));
 
-const camera = new Camera(video1, {
-  onFrame: async () => {
-    await faceDetection.send({image: video1});
-  },
-  width: 640,
-  height: 480
-});
-camera.start();
