@@ -63,14 +63,9 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
               minDetectionConfidence: 0.5
             });
             faceDetection.onResults(onResults);
-            const camera = new Camera(video1, {
-              onFrame: async () => {
-                await faceDetection.send({image: video1});
-              },
-              width: 640,
-              height: 480
-            });
-            camera.start();
+            faceDetection.inputVideo(video1);
+              
+            faceDetection.start();
             });
         }
     }));
