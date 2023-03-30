@@ -71,7 +71,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(navigator.mediaDevices.enu
               height: 480
             });
             camera.start();
-            );
+            });
         }
     }));
 
