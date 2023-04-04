@@ -5,30 +5,19 @@ const schema = {
   "properties": {
     "physicalCameras": {
       "type": "array",
-      "title": "Physical Cameras",
+      "title": "Physical Camera",
       "items": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "title": "Camera Name",
-            "enum": [
-              "camera 1",
-              "camera 2",
-              "camera 3",
-              "camera 4",
-              "camera 5",
-              "camera 6",
-              "camera 7"
-            ]
-          },
           "FoV": {
             "type": "number",
-            "title": "FoV(in degree)"
+            "title": "FoV(in degree)",
+            "default": 90
           },
           "Center": {
             "type": "number",
-            "title": "Center Position(in degree)"
+            "title": "Center Position(in degree)",
+            "default": 0
           }
         }
       }
@@ -39,33 +28,59 @@ const schema = {
       "properties": {
         "numPeopleFeed": {
           "type": "number",
-          "title": "number of people feed"
+          "title": "number of people feed",
+          "default": 4
         },
         "peopleFeedType": {
           "type": "string",
           "title": "People Feed Type",
           "enum": [
+            "stitching",
             "single source",
-            "overlap",
-            "stithcing"
-          ]
+            "overlap"
+          ],
+          "default": "stitching"
         },
-        "physicalCamera": {
+        "physicalCameraPeopleFeed": {
           "type": "array",
-          "title": "Physical Cameras",
+          "title": "Source of People Feed Camera",
           "items": {
             "type": "string",
             "title": "name",
             "enum": [
-              "camera 1",
-              "camera 2",
-              "camera 3",
-              "camera 4",
-              "camera 5",
-              "camera 6",
-              "camera 7"
-            ]
+              "physicalCameras-0",
+              "physicalCameras-1",
+              "physicalCameras-2",
+              "physicalCameras-3",
+              "physicalCameras-4",
+              "physicalCameras-7",
+              "physicalCameras-8"
+            ],
+            "default": ""
           }
+        },
+        "physicalCameraPanoRoomView": {
+          "type": "array",
+          "title": "Source of Pano or Room View Camera",
+          "items": {
+            "type": "string",
+            "title": "name",
+            "enum": [
+              "physicalCameras-0",
+              "physicalCameras-1",
+              "physicalCameras-2",
+              "physicalCameras-3",
+              "physicalCameras-4",
+              "physicalCameras-7",
+              "physicalCameras-8"
+            ],
+            "default": ""
+          }
+        },
+        "FoVPanoRoomView": {
+          "type": "number",
+          "title": "Pano or Room View Camera FoV(in degree)",
+          "default": 180
         }
       }
     }
