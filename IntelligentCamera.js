@@ -3,7 +3,7 @@ const schema = {
   "type": "object",
   "title": "Intelligent Camera Certification Form",
   "properties": {
-    "physicalCameras": {
+    "phyCameras": {
       "type": "array",
       "title": "Physical Camera",
       "items": {
@@ -22,18 +22,18 @@ const schema = {
         }
       }
     },
-    "logicalCameras": {
+    "multiStreamIntelliFrameCamera": {
       "type": "object",
-      "title": "Logcial Cameras",
+      "title": "Multi Stream IntelliFrame Cameras",
       "properties": {
-        "numPeopleFeed": {
+        "num": {
           "type": "number",
           "title": "number of people feed",
           "default": 4
         },
-        "peopleFeedType": {
+        "type": {
           "type": "string",
-          "title": "People Feed Type",
+          "title": "People Feed Crop Type",
           "enum": [
             "stitching",
             "single source",
@@ -41,7 +41,7 @@ const schema = {
           ],
           "default": "stitching"
         },
-        "physicalCameraPeopleFeed": {
+        "source": {
           "type": "array",
           "title": "Source of People Feed Camera",
           "items": {
@@ -58,8 +58,24 @@ const schema = {
             ],
             "default": ""
           }
+        }
+      }
+    },
+    "panoRoomViewCamera": {
+      "type": "object",
+      "title": "Pano or Room View Camera",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Pano or Room View Camera Type",
+          "enum": [
+            "stitching",
+            "single source",
+            "overlap"
+          ],
+          "default": "stitching"
         },
-        "physicalCameraPanoRoomView": {
+        "source": {
           "type": "array",
           "title": "Source of Pano or Room View Camera",
           "items": {
@@ -77,7 +93,7 @@ const schema = {
             "default": ""
           }
         },
-        "FoVPanoRoomView": {
+        "FoV": {
           "type": "number",
           "title": "Pano or Room View Camera FoV(in degree)",
           "default": 180
