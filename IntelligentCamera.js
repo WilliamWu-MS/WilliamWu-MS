@@ -103,9 +103,13 @@ const schema = {
   }
 };
 
+const uiSchema = {
+  "type": "VerticalLayout"
+}
+
 const onSubmit = ({ formData }, e) => console.log("Data submitted: ", formData);
 
 ReactDOM.render(
-  <Form schema={schema} onSubmit={onSubmit} />,
+  <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit} />,
   document.getElementById("app")
 );
