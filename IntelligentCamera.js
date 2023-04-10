@@ -105,7 +105,7 @@ const schema = {
 
 const uiSchema = {
   "type": "VerticalLayout"
-}
+};
 
 const onSubmit = ({ formData }, e) => console.log("Data submitted: ", formData);
 
